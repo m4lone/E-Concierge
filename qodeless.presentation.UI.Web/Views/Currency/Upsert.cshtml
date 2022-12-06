@@ -1,0 +1,47 @@
+﻿@using qodeless.domain.Enums
+@using qodeless.application.ViewModels
+@model CurrencyViewModel
+@{
+    ViewData["Title"] = "Currency";
+}
+
+<h4>Grupos</h4>
+
+<form asp-action="Upsert" id="myform">
+
+    <div class="row">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="col-12">
+            <div class="card mt-2">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label asp-for="Code" class="control-label">Código</label>
+                                <select asp-for="Code" asp-items = "Html.GetEnumSelectList<ECurrencyCode>()" >
+                                </select>
+                            </div>
+                            <span asp-validation-for="Code" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label asp-for="VlrToBRL" class="control-label">Valor para R$</label>
+                                <input asp-for="VlrToBRL" class="form-control form-control-sm" type="number" min="0"/>
+                            </div>
+                            <span asp-validation-for="VlrToBRL" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-4 mt-3">
+            <input type="submit" value="Cadastrar" class="btn btn-outline-success btn-sm w-150" /> |
+            <a class="btn btn-outline-secondary btn-sm w-150" asp-action="Index">Voltar</a>
+        </div>
+
+    </div>
+
+</form>

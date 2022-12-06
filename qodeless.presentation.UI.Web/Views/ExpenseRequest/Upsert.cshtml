@@ -1,0 +1,80 @@
+﻿@using qodeless.application.ViewModels
+@using qodeless.domain.Enums
+@model ExpenseRequestViewModel
+@{
+    ViewData["Title"] = "Pedido de Despesas";
+}
+
+<h4>Pedido de Despesas</h4>
+
+<form asp-action="Upsert" id="myform">
+
+    <div class="row">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="col-12">
+            <div class="card mt-2">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label asp-for="UserOperationID" class="control-label">Operação do Usuário</label>
+                                <input asp-for="UserOperationID" class="form-control form-control-sm" />
+                            </div>
+                            <span asp-validation-for="UserOperationID" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label asp-for="DueDate" class="control-label">Data de Publicação</label>
+                                <input asp-for="DueDate" class="form-control form-control-sm" type=datetime-local />
+                            </div>
+                            <span asp-validation-for="DueDate" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label asp-for="Message" class="control-label">Observação</label>
+                                <input asp-for="Message" class="form-control form-control-sm" />
+                            </div>
+                            <span asp-validation-for="Message" class="text-danger"></span>
+                        </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label asp-for="Request" class="control-label">Requisição</label>
+                                <select asp-for="Request" asp-items="Html.GetEnumSelectList<EExpenseRequest>()">
+                                </select>
+                            </div>
+                            <span asp-validation-for="Request" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label asp-for="ExpenseId" class="control-label">Cadastro de Despesa</label>
+                                <select class="form-control form-control-sm" asp-for="ExpenseId" id="ExpenseId">
+                                    <option value="0">Selecione</option>
+                                    @foreach (var item in ViewBag.Expenses)
+                                    {
+                                        <option value="@item.Id">@item.Name </option>
+
+                                    }
+                                </select>
+                            </div>
+                            <span asp-validation-for="ExpenseId" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-4 mt-3">
+            <input type="submit" value="Cadastrar" class="btn btn-outline-success btn-sm w-150" /> |
+            <a class="btn btn-outline-secondary btn-sm w-150" asp-action="Index">Voltar</a>
+        </div>
+
+    </div>
+
+</form>

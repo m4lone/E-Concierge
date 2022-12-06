@@ -1,0 +1,41 @@
+﻿@using qodeless.presentation.WebApp.Models
+@model PartnerGamesViewModel
+
+<fieldset class="fieldset">
+    <legend>Jogos (@Model.AccountName) </legend>
+    <div class="row-fluid">
+        <div class="span6">
+            @Html.AntiForgeryToken()
+            <table id="dt" class="dt table-responsive-sm table table-striped table-bordered" style="width:100%"
+                   data-cols="code,name,dtpublish,status,version"
+                   data-what="Game"
+                   data-main-col="name"
+                   data-delete-url="/Game/Delete"
+                   data-edit-url="/Game/Upsert"
+                   data-create-url="/Game/Upsert">
+                <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Name</th>
+                        <th data-orderable="false" class="w-110"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                        @if (Model.Games != null)
+                        {
+                            @foreach (var item in Model.Games)
+                            {
+                            <tr id="@item.Id" role="row">
+                                <td>@item.Code</td>
+                                <td>@item.Name</td>                        
+                                <td></td>
+                            </tr>
+                            }
+                        }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</fieldset>
+
+<br />

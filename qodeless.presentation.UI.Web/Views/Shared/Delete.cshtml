@@ -1,0 +1,29 @@
+﻿@model qodeless.presentation.UI.Web.Models.DeleteViewModel
+
+@{
+    ViewData["Title"] = "Deletar Registro";
+}
+
+<form asp-action="DeleteConfirmed" asp-route-Id="@Model.Id" method="post" class="mt-3">
+
+    <h4>Deseja excluir este item?</h4>
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>Registro:  </dt><dd>@Html.DisplayFor(model => model.Name)</dd>
+            <dt>Chave: </dt><dd>@Html.DisplayFor(model => model.Description)</dd>
+        </dl>
+
+
+        <div class="form-actions no-color">
+            <a asp-action="Index" class="btn btn-outline-secondary btn-sm">
+                <i class="fa fa-arrow-circle-o-left"></i>
+                Voltar
+            </a>
+
+            <button class="btn btn-outline-danger btn-sm">
+                <i class="fa fa-trash-o"></i> Excluir
+            </button>
+        </div>
+    </div>
+</form>

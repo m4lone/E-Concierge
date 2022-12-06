@@ -1,0 +1,45 @@
+﻿@using qodeless.application.ViewModels
+@model IEnumerable<DeviceViewModel>
+
+<fieldset class="fieldset">
+    <legend>Dispositivos</legend>
+    <div class="row-fluid">
+        <div class="span6">
+            @Html.AntiForgeryToken()
+            <table id="dt" class="dt table-responsive-sm table table-striped table-bordered" style="width:100%"
+                   data-cols="code,serialnumber,type,status,macadress"
+                   data-what="Device"
+                   data-main-col="name"
+                   data-delete-url="/Device/Delete"
+                   data-edit-url="/Device/Upsert"
+                   data-create-url="/Device/Upsert"
+                   data-game-url="/DeviceGame/Upsert">
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Número de Série</th>
+                        <th>Tipo</th>
+                        <th>Status</th>
+                        <th>Endereço Mac</th>
+                        <th data-orderable="false" class="w-110"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr id="@item.Id" role="row">
+                        <td>@item.Code</td>
+                        <td>@item.SerialNumber</td>
+                        <td>@item.Type</td>
+                        <td>@item.TextoStatus</td>
+                        <td>@item.MacAddress</td>
+                        <td></td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</fieldset>
+
+<br />

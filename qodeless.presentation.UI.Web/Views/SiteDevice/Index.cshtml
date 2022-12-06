@@ -1,0 +1,38 @@
+﻿@using qodeless.application.ViewModels
+@model IEnumerable<SiteDeviceViewModel>
+
+<fieldset class="fieldset">
+    <legend>SiteDevice</legend>
+    <div class="row-fluid">
+        <div class="span6">
+            @Html.AntiForgeryToken()
+            <table id="dt" class="dt table-responsive-sm table table-striped table-bordered" style="width:100%"
+                   data-cols="accountid,gameid"
+                   data-what="SiteDevice"
+                   data-main-col="siteid"
+                   data-device-url="/SiteDevice/Device"
+                   data-edit-url="/SiteDevice/Upsert"
+                   data-create-url="/SiteDevice/Upsert">
+                <thead>
+                    <tr>
+                        <th>Site</th>
+                        <th>Device</th>
+                        <th data-orderable="false" class="w-110"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr id="@item.Id" role="row">
+                        <td>@item.SiteName</td>
+                        <td>@item.DeviceName</td>
+                        <td></td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</fieldset>
+
+<br />

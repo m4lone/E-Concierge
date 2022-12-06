@@ -1,0 +1,85 @@
+﻿@using qodeless.application.ViewModels
+@using qodeless.domain.Enums
+@model DeviceViewModel
+@{
+    ViewData["Title"] = "Dispositivos";
+}
+
+<h4>Dispositivos</h4>
+
+<form asp-action="Upsert" id="myform">
+
+    <div class="row">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="col-12">
+            <div class="card mt-2">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label asp-for="Code" class="control-label">Código</label>
+                                <input asp-for="Code" class="form-control form-control-sm" />
+                            </div>
+                            <span asp-validation-for="Code" class="text-danger"></span>
+                        </div>
+                    </div>
+                     <div class="row">
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label asp-for="SerialNumber" class="control-label">Numero de Série</label>
+                                <input asp-for="SerialNumber" class="form-control form-control-sm" />
+                            </div>
+                            <span asp-validation-for="SerialNumber" class="text-danger"></span>
+                        </div> 
+                    </div>
+                     <div class="row">
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label asp-for="Type" class="control-label">Tipo</label>
+                                <select asp-for="Type" asp-items="Html.GetEnumSelectList<EDeviceType>()">
+                                </select>
+                            </div>
+                            <span asp-validation-for="Type" class="text-danger"></span>
+                        </div>    
+                    </div>
+                     <div class="row">
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label class="control-label">Status</label>
+                                <select asp-for="Status" asp-items="@ViewBag.Status" id="EAccountStatus">
+                                </select>
+                            </div>
+                            <span asp-validation-for="Status" class="text-danger"></span>
+                        </div>
+                    </div>
+                     <div class="row">
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label asp-for="Availability" class="control-label">Disponibilidade</label>
+                                <select asp-for="Availability" asp-items="Html.GetEnumSelectList<EDeviceAvailability>()">
+                                </select>
+                            </div>
+                            <span asp-validation-for="Availability" class="text-danger"></span>
+                        </div>
+                    </div>
+                     <div class="row">
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label asp-for="MacAddress" class="control-label">Endereço Mac</label>
+                                <input asp-for="MacAddress" class="form-control form-control-sm" />
+                            </div>
+                            <span asp-validation-for="MacAddress" class="text-danger"></span>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-4 mt-3">
+            <input type="submit" value="Cadastrar" class="btn btn-outline-success btn-sm w-150" /> |
+            <a class="btn btn-outline-secondary btn-sm w-150" asp-action="Index">Voltar</a>
+        </div>
+
+    </div>
+
+</form>

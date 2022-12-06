@@ -1,0 +1,39 @@
+﻿@using qodeless.application.ViewModels
+@model IEnumerable<SiteGameViewModel>
+
+<fieldset class="fieldset">
+    <legend>SiteGame</legend>
+    <div class="row-fluid">
+        <div class="span6">
+            @Html.AntiForgeryToken()
+            <table id="dt" class="dt table-responsive-sm table table-striped table-bordered" style="width:100%"
+                   data-cols="esite,siteid,gameid"
+                   data-what="SiteGame"
+                   data-main-col="code"
+                   data-edit-url="/SiteGame/Upsert"
+                   data-create-url="/SiteGame/Upsert">
+                <thead>
+                    <tr>
+                     <th>Status</th>
+                     <th>Casa</th>
+                     <th>Jogo</th>
+                     <th data-orderable="false" class="w-110"></th>
+                     </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr id ="@item.Id" role ="row">
+                            <td>@item.ESite</td>
+                            <td>@item.SiteName</td>
+                            <td>@item.GameName</td>
+                            <td data-orderable="false" class="w-110"></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</fieldset>
+
+<br />

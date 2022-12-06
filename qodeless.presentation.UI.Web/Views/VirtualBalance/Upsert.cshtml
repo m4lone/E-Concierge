@@ -1,0 +1,93 @@
+﻿@using qodeless.domain.Enums
+@using qodeless.application.ViewModels
+@model VirtualBalanceViewModel
+@{
+    ViewData["Title"] = "Saldo";
+}
+
+<h4>Saldo</h4>
+
+<form asp-action="Upsert" id="myform">
+
+    <div class="row">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="col-12">
+            <div class="card mt-2">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label asp-for="UserPlayId" class="control-label">UserPlayerId</label>
+                                <input asp-for="UserPlayId" class="form-control form-control-sm" required />
+                            </div>
+                            <span asp-validation-for="UserPlayId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label asp-for="UserOperationId" class="control-label">UserOperationId</label>
+                                <input asp-for="UserOperationId" class="form-control form-control-sm" required />
+                            </div>
+                            <span asp-validation-for="UserOperationId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label asp-for="Type" class="control-label">Tipo</label>
+                                <select asp-for="Type" asp-items="Html.GetEnumSelectList<EBalanceType>()">
+                                </select>
+                            </div>
+                            <span asp-validation-for="Type" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label asp-for="Amount" class="control-label">Quantia $</label>
+                                <input asp-for="Amount" id="money" class="form-control form-control-sm" type="number" min="1.0" required />
+                            </div>
+                            <span asp-validation-for="Amount" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label asp-for="Description" class="control-label">Descrição</label>
+                                <input asp-for="Description" class="form-control form-control-sm" />
+                            </div>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-4 mt-3">
+            <input type="submit" value="Cadastrar" class="btn btn-outline-success btn-sm w-150" /> |
+            <a class="btn btn-outline-secondary btn-sm w-150" asp-action="Index">Voltar</a>
+        </div>
+
+    </div>
+
+</form>
+@section Scripts
+{
+
+    <!--<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>-->
+    @*<*@<!--script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+    <script>
+        $(document).on($('#money', function (event)) {
+            this.value = parseFloat(this.value.replace(/(.*){1}/, '0$1').replace(/[^\d]/g, '').replace(/(\d\d?)$/, '.$1')).toFixed(2);
+        });
+        //$("#money").on('change click keyup input paste', (function (event) {
+        //    $(this).val(function (index, value) {
+        //        return '$' + value.replace(/(?!\.)\D/g, "").replace(/(?<=\..*)\./g, "").replace(/(?<=\.\d\d).*/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        //    });
+        //}));
+
+     
+    </script>-->
+}

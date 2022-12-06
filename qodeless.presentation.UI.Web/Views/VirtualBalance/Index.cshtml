@@ -1,0 +1,44 @@
+﻿@using qodeless.application.ViewModels
+@model IEnumerable<VirtualBalanceViewModel>
+
+<fieldset class="fieldset">
+    <legend>VirtualBalance</legend>
+    <div class="row-fluid">
+        <div class="span6">
+            @Html.AntiForgeryToken()
+            <table id="dt" class="dt table-responsive-sm table table-striped table-bordered" style="width:100%"
+                   data-cols="userplayid, useroperationid, type, amount, description"
+                   data-what="VirtualBalance"
+                   data-main-col="userplayid"
+                   data-delete-url="/VirtualBalance/Delete"
+                   data-edit-url="/VirtualBalance/Upsert"
+                   data-create-url="/VirtualBalance/Upsert">
+                <thead>
+                    <tr>
+                        <th>UserPlayerId</th>
+                        <th>UserOperationId</th>
+                        <th>Type</th>
+                        <th>Amount</th>
+                        <th>Description</th>
+                        <th data-orderable="false" class="w-110"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr id="@item.Id" role="row">
+                        <td>@item.UserPlayId</td>
+                        <td>@item.UserOperationId</td>
+                        <td>@item.Type</td>
+                        <td>@item.Amount</td>
+                        <td>@item.Description</td>
+                        <td data-orderable="false" class="w-110"></td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</fieldset>
+
+<br />

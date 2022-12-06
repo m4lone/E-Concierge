@@ -1,0 +1,159 @@
+﻿@using qodeless.application.ViewModels
+@using qodeless.domain.Enums
+@model SiteViewModel
+@{
+    ViewData["Title"] = "Site";
+}
+
+<h4>Site</h4>
+
+<form asp-action="Upsert" id="create-site-form">
+
+    <div class="row">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="col-12">
+            <div class="card mt-2">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label asp-for="Name" class="control-label">Nome</label>
+                                <input asp-for="Name" class="form-control form-control-sm" />
+                            </div>
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label asp-for="Description" class="control-label">Descrição</label>
+                                <input asp-for="Description" class="form-control form-control-sm" />
+                            </div>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label asp-for="ZipCode" class="control-label">CEP</label>
+                                <input asp-for="ZipCode" class="form-control form-control-sm" />
+                            </div>
+                            <span asp-validation-for="ZipCode" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label asp-for="Address" class="control-label">Endereço</label>
+                                <input asp-for="Address" class="form-control form-control-sm" />
+                            </div>
+                            <span asp-validation-for="Address" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label asp-for="Number" class="control-label">Nº</label>
+                                <input asp-for="Number" class="form-control form-control-sm" type="number" />
+                            </div>
+                            <span asp-validation-for="Number" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label asp-for="City" class="control-label">Cidade</label>
+                                <input asp-for="City" class="form-control form-control-sm" />
+                            </div>
+                            <span asp-validation-for="City" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label asp-for="State" class="control-label">Estado</label>
+                                <input asp-for="State" class="form-control form-control-sm" />
+                            </div>
+                            <span asp-validation-for="State" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label asp-for="Country" class="control-label">País</label>
+                                <input asp-for="Country" class="form-control form-control-sm" />
+                            </div>
+                            <span asp-validation-for="Country" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label asp-for="AccountId" class="control-label">Parceiro</label>
+                                <select class="form-control form-control-sm" asp-for="AccountId" id="AccountId">
+                                    <option value="0">Selecione</option>
+                                    @foreach (var item in ViewBag.Accounts)
+                                    {
+                                        <option value="@item.Id">@item.Name </option>
+
+                                    }
+                                </select>
+                            </div>
+                            <span asp-validation-for="AccountId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label class="control-label">Tipo de Casa</label>
+                                <select asp-for="ESiteType" asp-items="@ViewBag.SiteTypes" id="ESiteType">
+                                </select>
+                            <span asp-validation-for="ESiteType" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label asp-for="Code" class="control-label">Código</label>
+                                <input asp-for="Code" id="code" class="form-control form-control-sm"/>
+                            </div>
+                            <span asp-validation-for="Code" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-4 mt-3">
+            <input type="submit" value="Cadastrar" class="btn btn-outline-success btn-sm w-150"/> |
+            <a class="btn btn-outline-secondary btn-sm w-150" asp-action="Index">Voltar</a>
+        </div>
+
+    </div>
+
+</form>
+@section Scripts{
+    <script>
+        
+        document.getElementById("create-site-form").addEventListener("submit", function(event){
+          if(!Validar()){
+             event.preventDefault();
+          }
+        });
+         
+         function Validar()
+         { 
+             var code = document.getElementById('code').value;
+             var validation = /^(RG[0-9]{4}[A-Z0-9]{2})$/g;
+             let valdt = validation.test(code);
+             console.log(valdt);
+          if(!valdt)
+          {
+              alert('Codigo Invalido!');
+              return false  
+          }     
+          return true
+         }
+    </script>
+}
+

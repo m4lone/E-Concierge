@@ -1,0 +1,41 @@
+﻿@using qodeless.presentation.WebApp.Models
+@model PartnerDevicesViewModel
+
+<fieldset class="fieldset">
+    <legend>Gabinetes (@Model.SiteName) </legend>
+    <div class="row-fluid">
+        <div class="span6">
+            @Html.AntiForgeryToken()
+            <table id="dt" class="dt table-responsive-sm table table-striped table-bordered" style="width:100%"
+                   data-cols="code,serialnumber,type,status,availability,macaddress"
+                   data-what="Device"
+                   data-main-col="name"
+                   data-delete-url="/Device/Delete"
+                   data-edit-url="/Device/Upsert"
+                   data-create-url="/Device/Upsert">
+                <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Name</th>
+                        <th data-orderable="false" class="w-110"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Devices != null)
+                    {
+                    @foreach (var item in Model.Devices)
+                    {
+                    <tr id="@item.Id" role="row">
+                        <td>@item.Code</td>
+                        <th>@item.SerialNumber</th>
+                        <td></td>
+                    </tr>
+                    }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</fieldset>
+
+<br />

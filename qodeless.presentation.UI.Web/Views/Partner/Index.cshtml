@@ -1,0 +1,42 @@
+﻿@using qodeless.application.ViewModels
+@model IEnumerable<AccountViewModel>
+
+<fieldset class="fieldset">
+    <legend>Parceiro</legend>
+    <div class="row-fluid">
+        <div class="span6">
+            @Html.AntiForgeryToken()
+            <table id="dt" class="dt table-responsive-sm table table-striped table-bordered" style="width:100%"
+                   data-cols="name,description,status"
+                   data-what="Partner"
+                   data-main-col="name"
+                   data-game-url="/AccountGame/GameByPartner"
+                   data-device-url="/SiteDevice/DeviceByPartner"
+                   
+                   data-edit-url="/Partner/Upsert"
+                   data-create-url="/Partner/Upsert">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Descrição</th>
+                        <th>Status</th>
+                        <th data-orderable="false" class="w-110"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr id="@item.Id" role="row">
+                        <td>@item.Name</td>
+                        <td>@item.Description</td>
+                        <td>@item.Status</td>
+                        <td></td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</fieldset>
+
+<br />

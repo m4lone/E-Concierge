@@ -1,0 +1,56 @@
+﻿@using qodeless.application.ViewModels
+@using qodeless.domain.Enums
+@model SitePlayerViewModel
+@{
+    ViewData["Title"] = "Site Player";
+}
+
+<h4>Site Game</h4>
+
+<form asp-action="Upsert" id="myform">
+
+    <div class="row">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="col-12">
+            <div class="card mt-2">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-3">
+                              <div class="form-group">
+                                <label class="control-label" asp-for="SiteId">Casa</label>
+                                <select class="form-control form-control-sm" asp-for="SiteId" id="SiteId">
+                                    <option value="0">Selecione</option>
+                                    @foreach (var item in ViewBag.Sites)
+                                    {
+                                        <option value="@item.Id">@item.Name </option>
+                                    }
+                                </select>
+                            </div>
+                            @*<span asp-validation-for="SiteName" class="text-danger"></span>*@
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                              <div class="form-group">
+                                <label class="control-label" asp-for="UserPlayerId">Nº de Identificação</label>
+                                <select class="form-control form-control-sm" asp-for="UserPlayerId" id="UserPlayId">
+                                    <option value="0">Selecione</option>
+                                    @foreach (var item in ViewBag.UserId)
+                                    {
+                                        <option value="@item.Id">@item.Email </option>
+                                    }
+                                </select>
+                            </div>
+                            @*<span asp-validation-for="SiteName" class="text-danger"></span>*@
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-4 mt-3">
+            <input type="submit" value="Cadastrar" class="btn btn-outline-success btn-sm w-150" /> |
+            <a class="btn btn-outline-secondary btn-sm w-150" asp-action="Index">Voltar</a>
+        </div>
+</form>

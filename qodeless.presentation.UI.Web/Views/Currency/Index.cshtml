@@ -1,0 +1,38 @@
+﻿@using qodeless.application.ViewModels
+@model IEnumerable<CurrencyViewModel>
+
+<fieldset class="fieldset">
+    <legend>Currency</legend>
+    <div class="row-fluid">
+        <div class="span6">
+            @Html.AntiForgeryToken()
+            <table id="dt" class="dt table-responsive-sm table table-striped table-bordered" style="width:100%"
+                   data-cols="vlrtobrl,code"
+                   data-what="Currency"
+                   data-main-col="code"
+                   data-delete-url="/Currency/Delete"
+                   data-edit-url="/Currency/Upsert"
+                   data-create-url="/Currency/Upsert">
+                <thead>
+                    <tr>
+                     <th>VlrToBRL</th>
+                     <th>Código</th>
+                     <th data-orderable="false" class="w-110"></th>
+                     </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr id ="@item.Id" role ="row">
+                            <td>@item.VlrToBRL</td>
+                            <td>@item.Code</td>
+                            <td data-orderable="false" class="w-110"></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</fieldset>
+
+<br />

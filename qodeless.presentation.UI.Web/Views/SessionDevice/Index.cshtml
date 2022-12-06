@@ -1,0 +1,43 @@
+﻿@using qodeless.application.ViewModels
+@model IEnumerable<SessionDeviceViewModel>
+
+<fieldset class="fieldset">
+    <legend>SessionDevice</legend>
+    <div class="row-fluid">
+        <div class="span6">
+            @Html.AntiForgeryToken()
+            <table id="dt" class="dt table-responsive-sm table table-striped table-bordered" style="width:100%"
+                   data-cols="userplayid,deviceid,dtbegin,dtend,lastipaddress"
+                   data-what="Session Device"
+                   data-main-col="userplayid"
+                   data-edit-url="/SessionDevice/Upsert"
+                   data-create-url="/SessionDevice/Upsert">
+                <thead>
+                    <tr>
+                     <th>Usuário</th>
+                     <th>Gabinete</th>
+                     <th>IP</th>
+                     <th>Data de Entrada</th>
+                     <th>Data de Saída</th>
+                     <th data-orderable="false" class="w-110"></th>
+                     </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr id ="@item.Id" role ="row">
+                            <td>@item.UserPlayId</td>
+                            <td>@item.DeviceName</td>
+                            <td>@item.LastIpAddress</td>
+                            <td>@item.DtBegin</td>
+                            <td>@item.DtEnd</td>
+                            <td data-orderable="false" class="w-110"></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</fieldset>
+
+<br />

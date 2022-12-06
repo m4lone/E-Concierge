@@ -1,0 +1,46 @@
+﻿@using qodeless.application.ViewModels
+@model IEnumerable<PlayViewModel>
+
+<fieldset class="fieldset">
+    <legend>Jogadas</legend>
+    <div class="row-fluid">
+        <div class="span6">
+            @Html.AntiForgeryToken()
+            <table id="dt" class=" table-responsive-sm table table-striped table-bordered" style="width:100%"
+                   data-cols=" = lastIpAdress, amountplay, amountextraball, email, deviceid, gameid, accountid"
+                   data-what="Play"
+                   data-main-col="name"
+                   data-delete-url="/Play/Delete"
+                <thead>
+                    <tr>
+                        <th>Sessão do Dispositivo</th>
+                        <th>Quantia Adquirida</th>
+                        <th>Qtd. Bolas Extras</th>
+                        <th>Jogador</th>
+                        <th>Gabinete</th>
+                        <th>Jogo</th>
+                        <th>Parceiro</th>
+                        <th data-orderable="false" class="w-110"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr id="@item.Id" role="row">
+                        <td>@item.LastIpAdress</td>
+                        <td>@item.AmountPlay</td>
+                        <td>@item.AmountExtraball</td>
+                        <td>@item.Email</td>
+                        <td>@item.DeviceCode</td>
+                        <td>@item.GameName</td>
+                        <td>@item.SiteName</td>
+                        <td></td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</fieldset>
+
+<br />

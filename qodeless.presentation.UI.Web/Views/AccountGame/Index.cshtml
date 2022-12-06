@@ -1,0 +1,37 @@
+﻿@using qodeless.application.ViewModels
+@model IEnumerable<AccountGameViewModel>
+
+<fieldset class="fieldset">
+    <legend>AccountGame</legend>
+    <div class="row-fluid">
+        <div class="span6">
+            @Html.AntiForgeryToken()
+            <table id="dt" class="dt table-responsive-sm table table-striped table-bordered" style="width:100%"
+                   data-cols="accountid,gameid"
+                   data-what="AccountGame"
+                   data-main-col="accountid"
+                   data-edit-url="/AccountGame/Upsert"
+                   data-create-url="/AccountGame/Upsert">
+                <thead>
+                    <tr>
+                        <th>Parceiro</th>
+                        <th>Jogo</th>
+                        <th data-orderable="false" class="w-110"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr id="@item.Id" role="row">
+                        <td>@item.AccountName</td>
+                        <td>@item.GameName</td>
+                        <td></td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</fieldset>
+
+<br />

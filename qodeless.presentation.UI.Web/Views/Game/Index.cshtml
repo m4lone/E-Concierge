@@ -1,0 +1,44 @@
+﻿@using qodeless.application.ViewModels
+@model IEnumerable<GameViewModel>
+
+<fieldset class="fieldset">
+    <legend>Jogos</legend>
+    <div class="row-fluid">
+        <div class="span6">
+            @Html.AntiForgeryToken()
+            <table id="dt" class="dt table-responsive-sm table table-striped table-bordered" style="width:100%"
+                   data-cols="code,name,dtpublish,textostatus,version"
+                   data-what="Game"
+                   data-main-col="name"
+                   data-delete-url="/Game/Delete"
+                   data-edit-url="/Game/Upsert"
+                   data-create-url="/Game/Upsert">
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Nome</th>
+                        <th>Data de Publicação</th>
+                        <th>Status</th>
+                        <th>Versão</th>
+                        <th data-orderable="false" class="w-110"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr id="@item.Id" role="row">
+                        <td>@item.Code</td>
+                        <td>@item.Name</td>
+                        <td>@item.DtPublish.ToString()</td>
+                        <td>@item.TextoStatus</td>
+                        <td>@item.Version</td>
+                        <td></td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</fieldset>
+
+<br />

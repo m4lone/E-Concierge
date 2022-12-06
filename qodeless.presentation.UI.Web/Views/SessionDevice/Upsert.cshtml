@@ -1,0 +1,91 @@
+﻿@using qodeless.application.ViewModels
+@using qodeless.domain.Enums
+@model SessionDeviceViewModel
+@{
+    ViewData["Title"] = "Session Device";
+}
+
+<h4>Session Device</h4>
+
+<form asp-action="Upsert" id="myform">
+
+    <div class="row">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="col-12">
+            <div class="card mt-2">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-3">
+                              <div class="form-group">
+                                <label class="control-label" asp-for="UserPlayId">Código do Jogador</label>
+                                <input asp-for="UserPlayId" class="form-control form-control-sm" />
+                            </div>
+                            @*<span asp-validation-for="SiteName" class="text-danger"></span>*@
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label class="control-label" asp-for="DeviceId">Gabinete</label>
+                                <select class="form-control form-control-sm" asp-for="DeviceId" id="DeviceId">
+                                    <option value="0">Selecione</option>
+                                    @foreach (var item in ViewBag.Devices)
+                                    {
+                                        <option value="@item.Id">@item.Code </option>
+
+                                    }
+                                </select>
+                            </div>
+                            @*<span asp-validation-for="DeviceName" class="text-danger"></span>*@
+                        </div>
+                    </div>
+                     <div class="row">
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label class="control-label" asp-for="LastIpAddress">IP</label>
+                                <input asp-for="LastIpAddress" class="form-control form-control-sm" />
+                            </div>
+                            @*<span asp-validation-for="GameName" class="text-danger"></span>*@
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label class="control-label" asp-for="DtBegin">Data de Entrada</label>
+                                <input asp-for="DtBegin" class="form-control form-control-sm" type="datetime-local"/>
+                            </div>
+                            @*<span asp-validation-for="GameName" class="text-danger"></span>*@
+                        </div>
+                    </div>
+                     <div class="row">
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label class="control-label" asp-for="DtEnd">Data de Saída</label>
+                                <input asp-for="DtEnd" class="form-control form-control-sm" type="datetime-local"/>
+                            </div>
+                            @*<span asp-validation-for="GameName" class="text-danger"></span>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-4 mt-3">
+            <input type="submit" value="Cadastrar" class="btn btn-outline-success btn-sm w-150" /> |
+            <a class="btn btn-outline-secondary btn-sm w-150" asp-action="Index">Voltar</a>
+        </div>
+
+    </div>
+
+</form>
+@*@section Scripts{
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $("#ESite").select2();
+                $("#SiteId").select2();
+                $("#GameId").select2();
+                $("#DeviceId").select2();
+            });
+        </script>
+    }*@

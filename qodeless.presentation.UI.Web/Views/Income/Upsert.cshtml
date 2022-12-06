@@ -1,0 +1,150 @@
+﻿@*@using qodeless.application.ViewModels
+@using qodeless.domain.Enums
+@model IncomeViewModel
+@{
+    ViewData["Title"] = "Receita";
+}
+
+<h4>Receita</h4>
+
+<form asp-action="Upsert" id="myform">
+
+    <div class="row">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="col-12">
+            <div class="card mt-2">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label asp-for="Type" class="control-label">Tipo de Receita</label>
+                                <select asp-for="Type" asp-items="Html.GetEnumSelectList<EIncomeType>()">
+                                </select>
+                            </div>
+                            <span asp-validation-for="Type" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label asp-for="Status" class="control-label">Status</label>
+                                <select asp-for="Status" asp-items="Html.GetEnumSelectList<EIncomeStatus>()">
+                                </select>
+                            </div>
+                            <span asp-validation-for="Status" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label asp-for="UserOperationId" class="control-label">Operação do Usuário</label>
+                                <input asp-for="UserOperationId" class="form-control form-control-sm" />
+                            </div>
+                            <span asp-validation-for="UserOperationId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label asp-for="DueDate" class="control-label">Data de Publicação</label>
+                                <input asp-for="DueDate" class="form-control form-control-sm" type=datetime-local />
+                            </div>
+                            <span asp-validation-for="DueDate" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label asp-for="TransactionDate" class="control-label">Data de Transição</label>
+                                <input asp-for="TransactionDate" class="form-control form-control-sm" type=datetime-local />
+                            </div>
+                            <span asp-validation-for="TransactionDate" class="text-danger"></span>
+                        </div>
+                    </div>
+                     <div class="row">
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label asp-for="Note" class="control-label">Observações</label>
+                                <input asp-for="Note" class="form-control form-control-sm" />
+                            </div>
+                            <span asp-validation-for="Note" class="text-danger"></span>
+                        </div>
+                    </div>
+                     <div class="row">
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label asp-for="Amount" class="control-label">Quantia</label>
+                                <input asp-for="Amount" class="form-control form-control-sm" type="number" min= />
+                            </div>
+                            <span asp-validation-for="Amount" class="text-danger"></span>
+                        </div>
+                    </div>
+                     <div class="row">
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label asp-for="Description" class="control-label">Descrição</label>
+                                <input asp-for="Description" class="form-control form-control-sm" />
+                            </div>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label class="control-label" asp-for="AccountId">Conta</label>
+                                <select class="form-control form-control-sm" asp-for="AccountId" id="AccountId">
+                                    <option value="0">Selecione</option>
+                                    @foreach (var item in ViewBag.Accounts)
+                                    {
+                                        <option value="@item.Id">@item.Name </option>
+
+                                    }
+                                </select>
+                            </div>
+                            <span asp-validation-for="AccountName" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label class="control-label" asp-for="IncomeTypeId">Tipo de Renda</label>
+                                <select class="form-control form-control-sm" asp-for="IncomeTypeId" id="IncomeTypeId">
+                                    <option value="0">Selecione</option>
+                                    @foreach (var item in ViewBag.IncomeTypes)
+                                    {
+                                        <option value="@item.Id">@item.Name </option>
+
+                                    }
+                                </select>
+                            </div>
+                            <span asp-validation-for="IncomeTypeName" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label class="control-label" asp-for="SiteId">Local</label>
+                                <select class="form-control form-control-sm" asp-for="SiteId" id="SiteId">
+                                    <option value="0">Selecione</option>
+                                    @foreach (var item in ViewBag.Sites)
+                                    {
+                                        <option value="@item.Id">@item.Name </option>
+
+                                    }
+                                </select>
+                            </div>
+                            <span asp-validation-for="SiteName" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-4 mt-3">
+            <input type="submit" value="Cadastrar" class="btn btn-outline-success btn-sm w-150" /> |
+            <a class="btn btn-outline-secondary btn-sm w-150" asp-action="Index">Voltar</a>
+        </div>
+
+    </div>
+
+</form>*@

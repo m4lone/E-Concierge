@@ -1,0 +1,39 @@
+﻿@using qodeless.application.ViewModels
+@model IEnumerable<SitePlayerViewModel>
+
+<fieldset class="fieldset">
+    <legend>Site Player</legend>
+    <div class="row-fluid">
+        <div class="span6">
+            @Html.AntiForgeryToken()
+            <table id="dt" class="dt table-responsive-sm table table-striped table-bordered" style="width:100%"
+                   data-cols="sitename,userplayerid,email"
+                   data-what="SitePlayer"
+                   data-main-col="sitename"
+                   data-edit-url="/SitePlayer/Upsert"
+                   data-create-url="/SitePlayer/Upsert">
+                <thead>
+                    <tr>
+                     <th>Usuário</th>
+                     <th>Nº de Identificação</th>
+                     <th>E-mail</th>
+                     <th data-orderable="false" class="w-110"></th>
+                     </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr id ="@item.Id" role ="row">
+                            <td>@item.SiteName</td>
+                            <td>@item.UserPlayerId</td>
+                            <td>@item.Email</td>
+                            <td data-orderable="false" class="w-110"></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</fieldset>
+
+<br />

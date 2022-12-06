@@ -1,0 +1,56 @@
+﻿@*@using qodeless.application.ViewModels
+@model IEnumerable<SiteViewModel>
+
+<fieldset class="fieldset">
+    <legend>Site</legend>
+    <div class="row-fluid">
+        <div class="span6">
+            @Html.AntiForgeryToken()
+            <table id="dt" class="dt table-responsive-sm table table-striped table-bordered" style="width:100%"
+                   data-cols="name, description,zipcode,address,number,city,country,accountId, esitetype,code"
+                   data-what="Site"
+                   data-main-col="name"                   
+                   data-play-url="/SitePlayer/PlaysBySites"
+                   data-device-url="/Device/Index"
+                   data-delete-url="/Site/Delete"
+                   data-edit-url="/Site/Upsert"
+                   data-create-url="/Site/Upsert">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Descrição</th>
+                        <th>CEP</th>
+                        <th>Endereço</th>
+                        <th>Nº</th>
+                        <th>Cidade</th>
+                        <th>País</th>
+                        <th>Parceiro</th>
+                        <th>Tipo de Casa</th>
+                        <th>Código</th>
+                        <th data-orderable="false" class="w-110"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr id="@item.Id" role="row">
+                        <td>@item.Name</td>
+                        <td>@item.Description</td>
+                        <td>@item.ZipCode</td>
+                        <td>@item.Address</td>
+                        <td>@item.Number</td>
+                        <td>@item.City</td>
+                        <td>@item.Country</td>
+                        <td>@item.AccountName</td>
+                        <td>@item.ESiteType</td>
+                        <td>@item.Code</td>
+                        <td></td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</fieldset>
+
+<br />*@

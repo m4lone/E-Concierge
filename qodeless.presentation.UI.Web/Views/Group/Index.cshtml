@@ -1,0 +1,40 @@
+﻿@using qodeless.application.ViewModels
+@model IEnumerable<GroupViewModel>
+
+<fieldset class="fieldset">
+    <legend>Colaboradores</legend>
+    <div class="row-fluid">
+        <div class="span6">
+            @Html.AntiForgeryToken()
+            <table id="dt" class="dt table-responsive-sm table table-striped table-bordered" style="width:100%"
+                   data-cols="code,name,acceptancecriteria"
+                   data-what="Group"
+                   data-main-col="nome"
+                   data-delete-url="/Group/Delete"
+                   data-edit-url="/Group/Upsert"
+                   data-create-url="/Group/Upsert">
+                <thead>
+                    <tr>
+                        <th>Sigla</th>
+                        <th>Nome</th>
+                        <th>Nota Mín.</th>
+                        <th data-orderable="false" class="w-110"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr id="@item.Id" role="row">
+                        <td>@item.Code</td>
+                        <td>@item.Name</td>
+                        <td>@item.AcceptanceCriteria.ToString()</td>
+                        <td></td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</fieldset>
+
+<br />
